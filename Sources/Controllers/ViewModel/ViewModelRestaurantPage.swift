@@ -38,18 +38,21 @@ extension ViewModelRestaurantPage {
 
 extension ViewModelRestaurantPage{
     func fetchRestaurantList(){
-        Task{
-            do{
-                self.isLoading.send(true)
-                let result = try await self.restaurantRepo.getRestaurants();
-                self.isLoading.send(false)
-                self.parseRestaurantResponse(restautants: result);
-               
-            }
-            catch let error {
-                self.isLoading.send(false)
-                self.errorHandler.send((error as! RestaurantErrorModel))
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            Task{
+                do{
+                    self.isLoading.send(true)
+                    let result = try await self.restaurantRepo.getRestaurants();
+                    self.isLoading.send(false)
+                    self.parseRestaurantResponse(restautants: result);
+                   
+                }
+                catch let error {
+                    self.isLoading.send(false)
+                    self.errorHandler.send((error as! RestaurantErrorModel))
+                }
             }
         }
+        
     }
 }
