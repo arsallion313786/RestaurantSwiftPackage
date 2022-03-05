@@ -95,6 +95,8 @@ extension RestaurantListingVC{
         self.waitingIndicator.translatesAutoresizingMaskIntoConstraints = false;
         self.waitingIndicator.snp.makeConstraints { make in
             make.center.equalTo(self.view)
+            make.height.equalTo(20)
+            make.width.equalTo(20)
         }
     }
     
