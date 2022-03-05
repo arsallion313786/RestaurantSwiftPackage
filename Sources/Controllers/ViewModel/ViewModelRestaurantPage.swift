@@ -38,7 +38,6 @@ extension ViewModelRestaurantPage {
 
 extension ViewModelRestaurantPage{
     func fetchRestaurantList(){
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             Task{
                 do{
                     self.isLoading.send(true)
@@ -52,7 +51,6 @@ extension ViewModelRestaurantPage{
                     self.errorHandler.send((error as! RestaurantErrorModel))
                 }
             }
-        }
         
     }
 }
