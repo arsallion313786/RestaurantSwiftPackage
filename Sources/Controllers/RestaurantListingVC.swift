@@ -10,6 +10,7 @@ import SnapKit
 import SDWebImage
 import Combine
 
+
 public class RestaurantListingVC: UIViewController {
     
     let collectionView: UICollectionView! = {
@@ -18,6 +19,14 @@ public class RestaurantListingVC: UIViewController {
         let list = UICollectionView(frame: CGRect.zero, collectionViewLayout: listLayout)
         
         return list;
+    }();
+    
+    let waitingIndicator:UIActivityIndicatorView = {
+        let activityIndicator = UIActivityIndicatorView();
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.style = UIActivityIndicatorView.Style.large
+        activityIndicator.tintColor = UIColor.purple
+        return activityIndicator;
     }();
     
     private var dataSource:UICollectionViewDiffableDataSource<Section, ViewModelRestaurant>!
@@ -64,10 +73,12 @@ public class RestaurantListingVC: UIViewController {
 extension RestaurantListingVC{
     func constructHierarchy() {
         self.view.addSubview(self.collectionView);
+        self.view.addSubview(self.waitingIndicator);
     }
     
     func activateConstraints() {
         self.activateCollectionViewConstraints();
+        self.activateWaitingIndicatorConstraint();
     }
     
     func activateCollectionViewConstraints(){
@@ -77,7 +88,13 @@ extension RestaurantListingVC{
             make.right.equalTo(self.view)
             make.top.equalTo(self.view)
             make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
-            
+        }
+    }
+    
+    func activateWaitingIndicatorConstraint(){
+        self.waitingIndicator.translatesAutoresizingMaskIntoConstraints = false;
+        self.waitingIndicator.snp.makeConstraints { make in
+            make.center.equalTo(self.view)
         }
     }
     
@@ -121,8 +138,8 @@ extension RestaurantListingVC{
     }
     
     func applyReloadSnapShot(){
-        snapshot.appendItems(self.viewModel.restaurants, toSection: .main)
-        dataSource.apply(snapshot, animatingDifferences: false)
+        self.snapshot.appendItems(self.viewModel.restaurants, toSection: .main)
+        self.dataSource.apply(snapshot, animatingDifferences: false)
     }
     
     func addRequiredObservers(){
@@ -151,14 +168,14 @@ extension RestaurantListingVC{
             .store(in: &self.cancelable)
     }
     
-//    func showHideHUD(isShown:Bool){
-//        if(isShown){
-//            MBProgressHUD.showAdded(to: self.view, animated: true)
-//        }
-//        else{
-//            MBProgressHUD.hide(for: self.view, animated: true)
-//        }
-//    }
+    func showHideHUD(isShown:Bool){
+        if(isShown){
+            self.waitingIndicator.startAnimating()
+        }
+        else{
+            self.waitingIndicator.stopAnimating()
+        }
+    }
     
     func showError(error:RestaurantErrorModel){
         
