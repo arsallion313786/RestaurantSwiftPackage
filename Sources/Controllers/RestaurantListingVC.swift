@@ -155,7 +155,7 @@ extension RestaurantListingVC{
             .receive(on: DispatchQueue.main, options: nil)
             .sink {[weak self] isShown in
                 guard let self = self else {return}
-                //self.showHideHUD(isShown: isShown)
+                self.showHideHUD(isShown: isShown)
             }
             .store(in: &self.cancelable)
         
