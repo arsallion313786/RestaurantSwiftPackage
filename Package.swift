@@ -5,14 +5,18 @@ import PackageDescription
 
 let package = Package(
     name: "RestaurantSwiftPackage",
+    platforms: [.iOS("15.0")],
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
             name: "RestaurantSwiftPackage",
             targets: ["RestaurantSwiftPackage"]),
+        
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
+        .package(url: "https://github.com/SDWebImage/SDWebImage.git", from: "5.1.0"),
+        .package(url: "https://github.com/SnapKit/SnapKit.git", .upToNextMajor(from: "5.0.1")),
         // .package(url: /* package url */, from: "1.0.0"),
     ],
     targets: [
@@ -20,7 +24,9 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
             name: "RestaurantSwiftPackage",
-            dependencies: []),
+            dependencies: ["SDWebImage","SnapKit"],
+            path: "Sources"
+        ),
         .testTarget(
             name: "RestaurantSwiftPackageTests",
             dependencies: ["RestaurantSwiftPackage"]),
