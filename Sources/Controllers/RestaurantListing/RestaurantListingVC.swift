@@ -53,9 +53,9 @@ public class RestaurantListingVC: UIViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+       
         self.methodsOnViewLoaded()
-        self.navigationController?.navigationBar.isTranslucent = true;
-        self.title = "Restaurant Lists"
+        
     }
     
     public override func loadView() {
@@ -101,14 +101,22 @@ extension RestaurantListingVC{
     }
     
     func methodsOnViewLoaded(){
+        self.configureNavBar()
         self.configureCollectionView()
         self.addRequiredObservers()
         self.viewModel.fetchRestaurantList();
     }
     
+    func configureNavBar(){
+        self.navigationItem.backButtonTitle = " ";
+        self.navigationController?.navigationBar.isTranslucent = true;
+        self.title = "Restaurant Lists"
+    }
+    
     
     
     func configureCollectionView(){
+        self.collectionView.delegate = self
         let cellRegistration = self.registerCell();
         self.makeDataSource(cellRegistration: cellRegistration)
         self.createSnapShot()
@@ -185,6 +193,13 @@ extension RestaurantListingVC{
     
 }
 
+extension RestaurantListingVC:UICollectionViewDelegate {
+    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let restaurant = self.dataSource.itemIdentifier(for: indexPath)?.restaurant else {return}
+        let vc = RestaurantDetailVC(restaurant: restaurant)
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+}
 
 
 
