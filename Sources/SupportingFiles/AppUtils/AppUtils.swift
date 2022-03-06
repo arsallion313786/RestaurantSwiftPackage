@@ -1,6 +1,6 @@
 //
 //  AppUtils.swift
-//  PokemonDemo
+//  RestaurantSwiftPackage
 //
 //  Created by Muhammad Arslan Khalid on 13/02/2022.
 //

@@ -1,6 +1,6 @@
 //
 //  ViewModelRestaurant.swift
-//  RestaurantModule
+//  RestaurantSwiftPackage
 //
 //  Created by Muhammad Arslan Khalid on 05/03/2022.
 //

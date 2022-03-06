@@ -1,6 +1,6 @@
 //
 //  RestaurantDetailVC.swift
-//  RestaurantModule
+//  RestaurantSwiftPackage
 //
 //  Created by Muhammad Arslan Khalid on 06/03/2022.
 //
@@ -93,7 +93,9 @@ class RestaurantDetailVC: UIViewController {
     }
 }
 
+//MAEK:- Utility Methods
 extension RestaurantDetailVC{
+    
     func constructHierarchy() {
         view.addSubview(self.scrollView);
         self.scrollView.addSubview(self.contentView);

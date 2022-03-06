@@ -1,6 +1,6 @@
 //
 //  RestaurantListingVC.swift
-//  RestaurantModule
+//  RestaurantSwiftPackage
 //
 //  Created by Muhammad Arslan Khalid on 05/03/2022.
 //
@@ -193,6 +193,8 @@ extension RestaurantListingVC{
     
 }
 
+
+//MARK:- CollectionView Delegate Method
 extension RestaurantListingVC:UICollectionViewDelegate {
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let restaurant = self.dataSource.itemIdentifier(for: indexPath)?.restaurant else {return}

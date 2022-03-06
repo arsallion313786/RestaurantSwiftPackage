@@ -1,6 +1,6 @@
 //
 //  RestaurantsAPI.swift
-//  RestaurantChallange
+//  RestaurantSwiftPackage
 //
 //  Created by Muhammad Arslan Khalid on 12/02/2022.
 //
