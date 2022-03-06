@@ -7,7 +7,7 @@
 
 import Foundation
 import UIKit
-
+import SDWebImage
 class RestaurantListingContentView: UIView, UIContentView {
     
     
