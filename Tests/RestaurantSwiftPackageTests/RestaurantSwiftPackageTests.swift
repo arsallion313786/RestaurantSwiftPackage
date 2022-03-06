@@ -18,6 +18,4 @@ final class RestaurantSwiftPackageTests: XCTestCase {
         
         XCTAssertTrue(result.count > 0, "Something went wrong")
     }
-    
-    
 }

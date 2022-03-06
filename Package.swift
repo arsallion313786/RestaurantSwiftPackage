@@ -27,11 +27,12 @@ let package = Package(
             dependencies: ["SDWebImage","SnapKit"],
             path: "Sources",
             resources: [
-                .process("Resources/RestaurantModule.xcassets")
+                .process("Resources/Media.xcassets")
             ]
         ),
         .testTarget(
             name: "RestaurantSwiftPackageTests",
-            dependencies: ["RestaurantSwiftPackage"]),
+            dependencies: ["RestaurantSwiftPackage"]
+        ),
     ]
 )
