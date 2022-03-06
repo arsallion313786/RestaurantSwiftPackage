@@ -10,7 +10,7 @@ import UIKit
 struct RestaurantModueConstants {
    
     struct AppImages {
-        static let generalPlaceHolderImage = UIImage(named: "placeholder-image", in: Bundle(for: RestaurantListingVC.self), compatibleWith: nil);
+        static let generalPlaceHolderImage = UIImage(named:"placeholderImage");
     }
     
     
